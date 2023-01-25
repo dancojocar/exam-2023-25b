@@ -79,10 +79,10 @@ router.get('/easiest', ctx => {
 router.post('/difficulty', ctx => {
   // console.log("ctx: " + JSON.stringify(ctx));
   const headers = ctx.request.body;
-  const dificulty = headers.dificulty;
+  const difficulty = headers.difficulty;
   // console.log("body: " + JSON.stringify(headers));
   const id = headers.id;
-  if (typeof id !== 'undefined' && typeof dificulty !== 'undefined') {
+  if (typeof id !== 'undefined' && typeof difficulty !== 'undefined') {
     const index = recipes.findIndex(recipe => recipe.id == id);
     if (index === -1) {
       console.log("Recipe not available!");
@@ -90,13 +90,13 @@ router.post('/difficulty', ctx => {
       ctx.response.status = 404;
     } else {
       let recipe = recipes[index];
-      recipe.difficulty = dificulty;
+      recipe.difficulty = difficulty;
       ctx.response.body = recipe;
       ctx.response.status = 200;
     }
   } else {
-    console.log("Missing or invalid: id or dificulty!");
-    ctx.response.body = { text: 'Missing or invalid: id or dificulty!' };
+    console.log("Missing or invalid: id or difficulty!");
+    ctx.response.body = { text: 'Missing or invalid: id or difficulty!' };
     ctx.response.status = 404;
   }
 });
